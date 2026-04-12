@@ -6,7 +6,7 @@ AnsiConsole.Markup("[bold purple]⚡ ArcNet iniciado[/]\n");
 
 var input = AnsiConsole.Ask<string>("> ");
 
-var dir = new DirectoryInfo("/home/matheus/Projects/jobs-assistent/");
+var dir = new DirectoryInfo("/home/matheus/Projects/zeev-automation");
 
 var dict = new DirectoryNode(dir);
 
