@@ -27,7 +27,7 @@ public class FileAnalyzer : IFileAnalyzer
             .OfType<ClassDeclarationSyntax>();
 
         var fileSummary = new FileSummary();
-
+        
         foreach (var cls in classes)
         {   
             fileSummary.Name = cls.Identifier.Text;

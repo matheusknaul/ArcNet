@@ -5,12 +5,12 @@ namespace ArcNet.Infrastructure.Providers;
 
 public class PromptProvider : IPromptProvider
 {
-    public Prompt GetAnalyzerPrompt()
+    public string GetAnalyzerPrompt()
     {
         throw new NotImplementedException();
     }
 
-    public Prompt GetPlannerPrompt()
+    public string GetPlannerPrompt()
     {
         throw new NotImplementedException();
     }
