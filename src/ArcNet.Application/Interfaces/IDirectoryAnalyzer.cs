@@ -4,6 +4,7 @@ namespace ArcNet.Application.Interfaces;
 
 public interface IDirectoryAnalyzer
 {
-    FileNode GetFile(string fileName);
-    DirectoryNode Analyze();
+    FileNode GetFileNode(string fileName);
+    DirectoryNode GetDirectoryNode();
+    Task<string> Analyze();
 }
