@@ -4,6 +4,6 @@ namespace ArcNet.Application.Interfaces;
 
 public interface IPromptProvider
 {
-    string GetPlannerPrompt();
+    string GetPlannerPrompt(string input);
     string GetAnalyzerPrompt();
 }

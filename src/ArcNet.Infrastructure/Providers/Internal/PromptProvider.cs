@@ -10,7 +10,7 @@ public class PromptProvider : IPromptProvider
         throw new NotImplementedException();
     }
 
-    public string GetPlannerPrompt()
+    public string GetPlannerPrompt(string input)
     {
         throw new NotImplementedException();
     }
