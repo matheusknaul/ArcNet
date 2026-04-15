@@ -39,8 +39,11 @@ public class AgentOrchestrator : IAgentOrchestrator
 
             var agentResponse = await _ollamaFacade.ChatAsync(ollamaRequestDto);
 
-            
-
         }
+    }
+
+    private bool ValidatePlan(Planner plan)
+    {
+        return true;
     }
 }

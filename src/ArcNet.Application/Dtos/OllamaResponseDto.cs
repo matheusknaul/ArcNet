@@ -21,4 +21,6 @@ public class OllamaResponseDto
     public int PromptEvalCount { get; set; }
     [JsonPropertyName("eval_count")]
     public int EvalCount { get; set; }
+    public bool HasError { get; set; } = false;
+    public string? MessageError { get; set; }
 }

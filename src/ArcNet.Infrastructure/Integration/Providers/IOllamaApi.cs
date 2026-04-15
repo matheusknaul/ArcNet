@@ -1,12 +1,13 @@
+using ArcNet.Application.Dtos;
 using Refit;
 
 namespace ArcNet.Infrastructure.Integration.Providers;
 
 public interface IOllamaApi
 {
-    [Post("")]
-    Task ChatAsync();
+    [Post("/api/generate")]
+    Task<ApiResponse<OllamaResponseDto>> ChatAsync(OllamaRequestDto dto);
 
-    [Post("")]
+    [Get("/api/tags")]
     Task GetModels();
 }
