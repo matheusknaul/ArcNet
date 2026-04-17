@@ -9,6 +9,7 @@ public class HistoryConversation
 public class Conversation
 {
     public string UserInput { get; set; }
+    public int Index { get; set; }
     public List<Step> Steps { get; set; }
     public int TotalTokens { get; set; }
     public long TotalElapsedTime { get;set; }
@@ -16,7 +17,7 @@ public class Conversation
 
 public class Step
 {
-    public int Index { get; set; }
+    public int StepIndex { get; set; }
     public string Model { get; set; }
     public Prompt Prompt { get; set; }
     public int InTokens { get;set; }

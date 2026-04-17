@@ -29,3 +29,10 @@ public class FileSummary
         return sb.ToString();
     }
 }
+
+public class MethodSummary
+{
+    public string Name { get; set; }
+    public List<string> Calls { get; set; }
+    public List<string> Dependencies { get; set; }
+}

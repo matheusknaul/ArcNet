@@ -14,9 +14,9 @@ public class FileAnalyzer : IFileAnalyzer
     {
         _directoryAnalyzer = directotryAnalyzer;
     }
-    public async Task<string> Analyze(string targetFile)
+    public async Task<string> Analyze(string fullPath)
     {
-        var fileNode = _directoryAnalyzer.GetFile(targetFile);
+        var fileNode = _directoryAnalyzer.GetFile(fullPath);
 
         var code = await File.ReadAllTextAsync(fileNode.FullPath);
 

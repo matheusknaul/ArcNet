@@ -3,7 +3,7 @@ using ArcNet.Application.Interfaces;
 
 namespace ArcNet.Infrastructure.Execution;
 
-public class ProjectCommandsExecution : ICommandsExecution
+public class ProjectCommandsExecution : IProjectCommandsExecution
 {
     public async Task<string> Build(string path)
     {
@@ -20,9 +20,9 @@ public class ProjectCommandsExecution : ICommandsExecution
         return await Run("dotnet", $"add reference {referenceName}", path);
     }
 
-    public async Task<string> AddNewProject(string path, string referenceName)
+    public async Task<string> AddNewProject(string path, string projectNameName)
     {
-        return await Run("dotnet", $"new package {referenceName}", path);
+        return await Run("dotnet", $"new package {projectNameName}", path);
     }
 
     public async Task<string> AddNewProjectList(string path)

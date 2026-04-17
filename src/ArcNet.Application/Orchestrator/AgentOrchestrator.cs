@@ -23,16 +23,18 @@ public class AgentOrchestrator : IAgentOrchestrator
     private readonly IPromptProvider _promptProvider;
     private readonly IOllamaFacade _ollamaFacade;
     private readonly IUserPreferences _userPreferences;
+    private readonly ICheckpointManager _checkpointManager;
 
     #endregion
 
     public AgentOrchestrator(IActionExecutor executor, IPromptProvider promptProvider,
-        IOllamaFacade ollamaFacade, IUserPreferences userPreferences)
+        IOllamaFacade ollamaFacade, IUserPreferences userPreferences, ICheckpointManager checkpointManager)
     {
         _executor = executor;
         _promptProvider = promptProvider;
         _ollamaFacade = ollamaFacade;
         _userPreferences = userPreferences;
+        _checkpointManager = checkpointManager;
     }
 
     public async Task Run(string input)
@@ -43,6 +45,8 @@ public class AgentOrchestrator : IAgentOrchestrator
         var userPreferences = _userPreferences.GetUserPreferences();
 
         Step = OrchestratorStep.ToPlanning;
+
+        _checkpointManager.SetIndex();
 
         while (!plan.Done)
         {
