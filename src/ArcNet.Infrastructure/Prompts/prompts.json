@@ -19,8 +19,8 @@
         "Considerations": "Return an list of actions to implement the user request: Where 'Type' is the action type, 'PathToExecute' is the absolute path file and 'Target' is the name file."
     },
     "Execution": {
-        "System": "",
-        "": ""
+        "System": "You are a planning agent",
+        "Instructions": ""
     },
     "Completion": {}
 }

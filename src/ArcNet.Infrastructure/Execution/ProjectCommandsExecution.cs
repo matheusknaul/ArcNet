@@ -17,7 +17,7 @@ public class ProjectCommandsExecution : ICommandsExecution
 
     public async Task<string> AddReference(string path, string referenceName)
     {
-        return await Run("dotnet", $"add package {referenceName}", path);
+        return await Run("dotnet", $"add reference {referenceName}", path);
     }
 
     public async Task<string> AddNewProject(string path, string referenceName)
