@@ -1,5 +1,4 @@
 using System.Text.Json;
-using System.Text.Json.Nodes;
 using ArcNet.Application.Interfaces;
 using ArcNet.Core.Entities;
 using ArcNet.Core.Enums;
@@ -8,32 +7,42 @@ namespace ArcNet.Infrastructure.Providers;
 
 public class CheckpointManager : ICheckpointManager
 {
-    private readonly IFileAnalyzer _fileAnalyzer;
+    private readonly IDirectoryAnalyzer _directoryAnalyzer;
 
     private const string SNAPSHOT_PATH = "../../ProjectSnaphots/snapshots.json";
     private int _index { get; set; }
     private ProjectSnapshot _projectSnapshot { get; set;}
 
-    public CheckpointManager(IFileAnalyzer fileAnalyzer)
+    public CheckpointManager(IDirectoryAnalyzer directoryAnalyzer)
     {
-        _fileAnalyzer = fileAnalyzer;
+        _directoryAnalyzer = directoryAnalyzer;
     }
 
     public async Task AddAsync(string fullPath, SnapshotAction action)
     {
         if(_projectSnapshot.InputIndex != _index)
-            _projectSnapshot = new ProjectSnapshot(_index);
+            NewProject(fullPath, _index);
         
         var content = await File.ReadAllTextAsync(fullPath);
 
-        _projectSnapshot.FileSnapshots.Add(new FileSnapshot());
+        _projectSnapshot.LastEditAt = DateTime.UtcNow;
 
-        // TODO
+        var fileName = _directoryAnalyzer.GetFileName(fullPath);
+
+        _projectSnapshot.FileSnapshots.Add(new FileSnapshot{Path = fullPath,
+             Action = action, Content = content, Name = fileName});
     }
 
     public void SetIndex()
     {
         _index++;
+    }
+
+    private async Task NewProject(string fullPath, int index)
+    {
+        _projectSnapshot = new ProjectSnapshot(index);
+        _projectSnapshot.ProjectName = _directoryAnalyzer.GetProjectName();
+        _projectSnapshot.LastEditAt = DateTime.UtcNow;
     }
 
     public async Task RestoreProject(int index)
@@ -52,7 +61,7 @@ public class CheckpointManager : ICheckpointManager
         foreach(var snapshot in root.FileSnapshots)
         {
             if(snapshot.Action == SnapshotAction.Delete)
-            {
+                {
                 if (File.Exists(snapshot.Path))
                     File.Delete(snapshot.Path);
 

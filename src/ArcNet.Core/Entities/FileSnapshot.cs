@@ -11,7 +11,7 @@ public class ProjectSnapshot
 {
     public string ProjectName { get; set; }
     public int InputIndex { get; set; }
-    public List<FileSnapshot> FileSnapshots { get; set; }
+    public List<FileSnapshot> FileSnapshots { get; set; } = new();
     public DateTime LastEditAt { get; set; }
 
     public ProjectSnapshot(){}

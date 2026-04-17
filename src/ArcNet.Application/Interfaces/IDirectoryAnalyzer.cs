@@ -7,4 +7,6 @@ public interface IDirectoryAnalyzer
     FileNode GetFileNode(string fileName);
     DirectoryNode GetDirectoryNode();
     Task<string> Analyze();
+    string GetProjectName();
+    string GetFileName(string fullPath);
 }

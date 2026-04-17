@@ -44,6 +44,24 @@ public class DirectoryNode
         }
     }
 
+    public string GetFileName(string path)
+    {
+        var name = Files?.FirstOrDefault(p => p.FullPath == path)?.Name;
+
+        if (name != null)
+            return name;
+
+        foreach (var dirNode in Directories)
+        {
+            var result = dirNode.GetFileName(path);
+
+            if (result != null)
+                return result;
+        }
+
+        throw new Exception("File not found!");
+    }
+
     public void AddFile(FileNode file)
     {
         Files.Add(file);

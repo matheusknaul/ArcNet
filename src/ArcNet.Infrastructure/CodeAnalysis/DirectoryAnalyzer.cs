@@ -7,9 +7,9 @@ public class DirectoryAnalyzer : IDirectoryAnalyzer
 {
     private readonly DirectoryNode _directory;
 
-    public DirectoryAnalyzer()
+    public DirectoryAnalyzer(DirectoryNode node)
     {
-        
+        _directory = node;
     }
 
     public Task<string> Analyze()
@@ -25,5 +25,15 @@ public class DirectoryAnalyzer : IDirectoryAnalyzer
     public FileNode GetFileNode(string fileName)
     {
         throw new NotImplementedException();
+    }
+
+    public string GetFileName(string fullPath)
+    {
+        return _directory.GetFileName(fullPath);
+    }
+
+    public string GetProjectName()
+    {
+        return _directory.Name;
     }
 }
