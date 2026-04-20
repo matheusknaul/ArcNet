@@ -5,6 +5,13 @@ namespace ArcNet.Infrastructure.Execution;
 
 public class ProjectCommandsExecution : IProjectCommandsExecution
 {
+    private readonly ICheckpointManager _checkPointManager;
+
+    public ProjectCommandsExecution(ICheckpointManager checkpoint)
+    {
+        _checkPointManager = checkpoint;
+    }
+
     public async Task<string> Build(string path)
     {
         return await Run("dotnet", "build", path);
