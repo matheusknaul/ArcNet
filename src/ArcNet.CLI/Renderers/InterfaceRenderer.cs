@@ -1,14 +1,25 @@
+using ArcNet.CLI.Renderers.Abstractions;
+using ArcNet.Core.Interfaces;
 using Spectre.Console;
-using Spectre.Console.Rendering;
 
 namespace ArcNet.CLI.Renderers;
 
-public class InterfaceRenderer
+public class InterfaceRenderer : IRenderer<InterfaceRenderer>
 {
     #region Dependencies
 
+    private readonly IUserPreferences _userPreferences;
+
+    #endregion
+
+    #region Properties
+
     private readonly List<string> _providers_list = new List<string>
-        {"Groq - gpt OSS 20B, gpt OSS 120B, Outros","Local (Ollama) - Personalizado"};
+        {
+            "Groq - gpt OSS 20B, gpt OSS 120B, others",
+            "Local (Ollama) - custom",
+            "Custom - set your custom provider/model in 'custom_preferences'"
+        };
 
     #endregion
 
@@ -17,12 +28,25 @@ public class InterfaceRenderer
     private Layout _header;
     private Layout _specs;
     private Layout _userPreferencesSet;
-    private Layout _userPrompt;
-    private Layout _modelProcessing;
+    private Layout promptInputing;
+    private Layout _promptProcessing;
 
     #endregion
 
-    public InterfaceRenderer(){}
+    public InterfaceRenderer(IUserPreferences userPreferences)
+    {
+        _userPreferences = userPreferences;
+    }
 
+    public void Initialize()
+    {
+        
+    }
 
-}
+     
+
+    public void Render(InterfaceRenderer model)
+    {
+        throw new NotImplementedException();
+    }
+}   
