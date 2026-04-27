@@ -4,7 +4,7 @@ namespace ArcNet.Core.Entities;
 
 public class SnapshotRoot
 {
-    public List<ProjectSnapshot> ProjectSnapshots { get; set; }
+    public List<ProjectSnapshot> ProjectSnapshots { get; set; } = new();
 }
 
 public class ProjectSnapshot
