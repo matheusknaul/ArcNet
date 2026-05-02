@@ -1,3 +1,4 @@
+using System.Text;
 using ArcNet.CLI.Renderers.Abstractions;
 using ArcNet.Core.Interfaces;
 using Spectre.Console;
@@ -9,6 +10,8 @@ public class InterfaceRenderer : IRenderer<InterfaceRenderer>
     #region Dependencies
 
     private readonly IUserPreferences _userPreferences;
+    public int ScreenWidth { get; set; }
+    public int ScreenHeight { get; set; }
 
     #endregion
 
@@ -36,14 +39,33 @@ public class InterfaceRenderer : IRenderer<InterfaceRenderer>
     public InterfaceRenderer(IUserPreferences userPreferences)
     {
         _userPreferences = userPreferences;
+        ScreenWidth = Console.WindowWidth;
+        ScreenHeight = Console.WindowHeight;
     }
 
-    public void Initialize()
+    public void Run()
     {
+        var width = AnsiConsole.Console.Profile.Width;
+        var height = AnsiConsole.Console.Profile.Height;
+        
         
     }
 
-     
+     public void RenderInput()
+    {
+        var buffer = new StringBuilder();
+
+        while(true){
+            var key = Console.ReadKey();
+
+            if (key.Key == ConsoleKey.Enter)
+            {
+                break;
+            }
+
+            buffer.Append(key);
+        }
+    }
 
     public void Render(InterfaceRenderer model)
     {
