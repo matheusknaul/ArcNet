@@ -5,4 +5,5 @@ namespace ArcNet.Core.Interfaces;
 public interface IUserPreferences
 {
     UserPreferences GetUserPreferences();
+    Task SetPreferences(UserPreferences preferences);
 }

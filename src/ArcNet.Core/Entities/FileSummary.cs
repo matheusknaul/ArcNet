@@ -4,7 +4,7 @@ namespace ArcNet.Core.Entities;
 
 public class FileSummary
 {
-    public string Name { get; set; }
+    public string? Name { get; set; }
     public List<string> Methods { get; set; } = new();
     public List<string> Deps { get; set; } = new();
 
@@ -32,7 +32,7 @@ public class FileSummary
 
 public class MethodSummary
 {
-    public string Name { get; set; }
-    public List<string> Calls { get; set; }
-    public List<string> Dependencies { get; set; }
+    public string? Name { get; set; }
+    public List<string>? Calls { get; set; }
+    public List<string>? Dependencies { get; set; }
 }

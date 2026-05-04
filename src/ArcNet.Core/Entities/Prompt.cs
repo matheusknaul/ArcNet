@@ -2,9 +2,9 @@ namespace ArcNet.Core.Entities;
 
 public class Root
 {
-    public Prompt Planning { get; set; }
-    public Prompt Execution { get; set; }
-    public Prompt Completion { get; set; }
+    public Prompt? Planning { get; set; }
+    public Prompt? Execution { get; set; }
+    public Prompt? Completion { get; set; }
 }
 
 public class Prompt

@@ -9,5 +9,5 @@ public interface IOllamaApi
     Task<ApiResponse<OllamaResponseDto>> ChatAsync(OllamaRequestDto dto);
 
     [Get("/api/tags")]
-    Task GetModels();
+    Task<OllamaGetModelsResponseDto> GetModels();
 }

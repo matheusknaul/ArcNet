@@ -17,6 +17,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ArcNet.Core\ArcNet.Core.csproj" />
+    <ProjectReference Include="..\ArcNet.Infrastructure\ArcNet.Infrastructure.csproj" />
+    <ProjectReference Include="..\ArcNet.Application\ArcNet.Application.csproj" />
   </ItemGroup>
 
 </Project>
