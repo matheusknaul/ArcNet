@@ -1,6 +1,4 @@
-using System.Text.Json;
-using Spectre.Console;
-using Spectre.Console.Cli;
+using ArcNet.Core.Entities;
 
 namespace ArcNet.CLI.Handlers;
 
@@ -13,7 +11,7 @@ public class InputHandler
         _commandHandler = commandHandler;
     }
 
-    public async Task<string> HandleAsync(string input)
+    public async Task<CommandFormatResponse?> HandleAsync(string input)
     {
         if (string.IsNullOrWhiteSpace(input))
             return null!;
@@ -22,11 +20,7 @@ public class InputHandler
             ? input[1..]
             : input;
 
-        var commandResponse = await _commandHandler.Handle(command);
-
-        var json = JsonSerializer.Serialize(commandResponse);
-
-        return json;
+        return await _commandHandler.Handle(command);
     }
 
 }

@@ -21,7 +21,20 @@ public class CommandService : ICommandService
 
     public Task<CommandFormatResponse> ExecuteHelpCommandAsync()
     {
-        throw new NotImplementedException();
+        return Task.FromResult(new CommandFormatResponse
+        {
+            Title = "Comandos",
+            ColorTitle = "cyan",
+            Description = "Comandos disponiveis no console do ArcNet.",
+            Lines =
+            {
+                new CommandFormatResponseLine { Content = "/help - mostra os comandos disponiveis" },
+                new CommandFormatResponseLine { Content = "/models - lista modelos do provider atual" },
+                new CommandFormatResponseLine { Content = "/provider - mostra o provider atual" },
+                new CommandFormatResponseLine { Content = "/clear - limpa o historico da tela" },
+                new CommandFormatResponseLine { Content = "/exit - encerra o console" }
+            }
+        });
     }
 
     public async Task<CommandFormatResponse> ExecuteModelsCommandAsync()
@@ -34,7 +47,7 @@ public class CommandService : ICommandService
 
         var provider = new Provider();
 
-        if(_userPreferences.Provider.Name.Contains("Ollama"))
+        if(_userPreferences.Provider.Name?.Contains("Ollama") == true)
             provider = await _ollamaFacade.GetInfoAsync();
         
         response.Title = $"Models - Provider ({provider.Name})";
@@ -52,7 +65,16 @@ public class CommandService : ICommandService
 
     public Task<CommandFormatResponse> ExecuteProviderCommandAsync()
     {
-        throw new NotImplementedException();
+        var provider = _userPreferences.Provider;
+
+        return Task.FromResult(new CommandFormatResponse
+        {
+            Title = "Provider",
+            ColorTitle = "cyan",
+            Description = string.IsNullOrWhiteSpace(provider.Name)
+                ? "Nenhum provider configurado."
+                : $"{provider.Name} ({provider.BaseUrl ?? "sem endpoint configurado"})"
+        });
     }
 
 }
