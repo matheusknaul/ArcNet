@@ -1,8 +1,10 @@
+using ArcNet.Core.Entities;
+
 namespace ArcNet.Application.Interfaces;
 
 public interface ICommandService
 {
-    Task<List<string>> ExecuteHelpCommandAsync();
-    Task<List<string>> ExecuteModelsCommandAsync();
-    Task<List<string>> ExecuteProviderCommandAsync();
+    Task<CommandFormatResponse> ExecuteHelpCommandAsync();
+    Task<CommandFormatResponse> ExecuteModelsCommandAsync();
+    Task<CommandFormatResponse> ExecuteProviderCommandAsync();
 }

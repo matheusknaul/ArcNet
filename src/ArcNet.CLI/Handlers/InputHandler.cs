@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
@@ -21,11 +22,11 @@ public class InputHandler
             ? input[1..]
             : input;
 
-        return await _commandHandler.Handle(command).ToString();
+        var commandResponse = await _commandHandler.Handle(command);
+
+        var json = JsonSerializer.Serialize(commandResponse);
+
+        return json;
     }
 
-    private string ParserResponse(List<string> list)
-    {
-        
-    }
 }
